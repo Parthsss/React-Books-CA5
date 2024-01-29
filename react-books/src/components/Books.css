@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:opsz,wght@9..40,200;9..40,400&family=Irish+Grover&family=Jost&family=Kavivanar&family=Kreon&family=Merriweather&family=Montserrat:wght@300&family=Mukta:wght@500&family=NTR&family=Nunito:wght@500;900&family=Playfair+Display:wght@400;500&family=Poppins:ital,wght@0,400;1,200&family=Roboto:wght@300&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700;800&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -21,10 +21,13 @@
 }
 
 h2 {
-  font-size: 2vw;
+  font-size: 2.8vw;
   font-family: "Rubik", sans-serif;
-  font-weight: 700;
+  font-weight: 600;
   color: #ffffff;
+  position: absolute;
+  left: 165px;
+  top: 50px;
 }
 
 .search-bar-container {
@@ -32,6 +35,8 @@ h2 {
   align-items: center;
   justify-content: center;
   width: 40%;
+  position: absolute;
+  left: 500px;
 }
 
 .search-input {
@@ -53,4 +58,44 @@ h2 {
   line-height: normal;
   border: 3.6px solid black;
   color: #ffffff;
+}
+
+.book-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 50px;
+  max-width: 65vw;
+  margin: 20px auto;
+  justify-content: center;
+}
+
+.book-card {
+  border: 3px solid black;
+  padding: 10px;
+  box-shadow: 5px 5px rgb(31, 30, 30);
+  text-align: center;
+  background-color: #FDF0DA;
+}
+
+.book-thumbnail {
+  max-height: 100%;
+}
+
+.book-details {
+  margin-top: 10px;
+}
+
+.book-title {
+  font-weight: bold;
+  font-size: 17 px;
+}
+
+.book-authors {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.book-rating {
+  font-size: 16px;
+  margin-top: 10px;
 }

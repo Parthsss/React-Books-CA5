@@ -7,6 +7,11 @@ import "./Books.css";
 function BookList() {
   const [booksArray, setBooksArray] = useState([]);
   const [searchInput, setSearchInput] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+  };
 
   
   useEffect(() => {
@@ -44,8 +49,8 @@ function BookList() {
   return (
     <div className="book-list-container">
       <div className="header">
-        <img className="logo-pic" src="https://camo.githubusercontent.com/7798ac9816844b12782b0a86e183dd4029f2070daf2dc3fcd77a1c1138d2ffd7/68747470733a2f2f73332e61702d736f7574682d312e616d617a6f6e6177732e636f6d2f6b616c76692d656475636174696f6e2e6769746875622e696f2f66726f6e742d656e642d7765622d646576656c6f706d656e742f4b616c7669756d2d4c6f676f2e706e67" alt="" />
-       
+        <img className="logo-pic" src="https://kalvium.community/images/sidebar-3d-logo.svg" alt="" />
+        <h2>Kalvium Books</h2>
         <div className="search-bar-container">
           
           <input
@@ -59,6 +64,31 @@ function BookList() {
         <NavLink to="/Forms">
           <button className="register-button">Register</button>
         </NavLink>
+      </div>
+
+      <div className="book-list">
+        {filteredBooks.length ? (
+          filteredBooks.map((book) => (
+            <div key={book.id} className="book-card">
+              <div className="book-image">
+                <img
+                  className="book-thumbnail"
+                  src={book.imageLinks.thumbnail}
+                  alt={book.title}
+                />
+              </div>
+              <div className="book-details">
+                <p className="book-title">{book.title}</p>
+                <p className="book-authors">{book.authors}</p>
+                <p className="book-rating">
+                  Rating: ★ {book.averageRating || "--"}/5
+                </p>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p>Please enter valid name</p>
+        )}
       </div>
 
     </div>

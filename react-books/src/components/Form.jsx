@@ -64,13 +64,13 @@ function App() {
           placeholder={labelText}
           id={name}
           className="input-field"
-          {...register(name, rules)}
+          {...register(name, { ...rules, type: name.includes('password') ? 'password' : 'text' })}
         />
         {errors[name] && errors[name].type === 'required' && (
           <p className="error-message">{`${labelText} is required`}</p>
         )}
         {errors[name] && errors[name].type === 'minLength' && (
-          <p className="error-message">{`${labelText} should have a minimum 3 letters and 1 special Charcter`}</p>
+          <p className="error-message">{`${labelText} should have a minimum 3 letters and 1 special character`}</p>
         )}
         {errors[name] && errors[name].type === 'maxLength' && (
           <p className="error-message">{`${labelText} can only have a maximum of 30 characters`}</p>
@@ -89,8 +89,7 @@ function App() {
     <>
       <div className="registration-container">
         <div className="header-container">
-            <img src="https://camo.githubusercontent.com/7798ac9816844b12782b0a86e183dd4029f2070daf2dc3fcd77a1c1138d2ffd7/68747470733a2f2f73332e61702d736f7574682d312e616d617a6f6e6177732e636f6d2f6b616c76692d656475636174696f6e2e6769746875622e696f2f66726f6e742d656e642d7765622d646576656c6f706d656e742f4b616c7669756d2d4c6f676f2e706e67" alt="" />
-          
+          <img src="https://camo.githubusercontent.com/7798ac9816844b12782b0a86e183dd4029f2070daf2dc3fcd77a1c1138d2ffd7/68747470733a2f2f73332e61702d736f7574682d312e616d617a6f6e6177732e636f6d2f6b616c76692d656475636174696f6e2e6769746875622e696f2f66726f6e742d656e642d7765622d646576656c6f706d656e742f4b616c7669756d2d4c6f676f2e706e67" alt="" />
         </div>
         <div className="main-content">
           <p className="heading">Sign Up now! </p>
@@ -98,9 +97,8 @@ function App() {
             <div className="registration-message">
               <h2 className="registration-success">Registration Successful!</h2>
               <NavLink to="/" className="logo-link">
-          <button className='back'> Home</button>
-        </NavLink>
-             
+                <button className='back'> Home</button>
+              </NavLink>
             </div>
           ) : (
             <form onSubmit={handleSubmit(onFormSubmit)} className="form-container">
@@ -118,8 +116,11 @@ function App() {
                 minLength: 10,
                 pattern: /.*[\W]+.*/i,
               })}
-              {renderFormField('Confirm password', 'confirmPassword', {
+              {renderFormField('Confirm password', 'password', { 
                 validate: (value) => value === watch('password'),
+                pattern: /.*[\W]+.*/i,
+                required: true,
+    
               })}
               <button type="submit" className="submit-button" disabled={false}>
                 Register
