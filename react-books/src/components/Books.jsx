@@ -4,8 +4,8 @@ import axios from "axios";
 import "./Books.css";
 
 function BookList() {
-  const [booksArray, setBooksArray] = useState([]);
-  const [searchInput, setSearchInput] = useState("");
+  const [booksList, setBooksList] = useState([]);
+  const [searchInput, setSearchRes] = useState("");
 
   useEffect(() => {
     async function getBooks() {
@@ -16,8 +16,7 @@ function BookList() {
             headers: { Authorization: "whatever-you-want" },
           }
         );
-        setBooksArray(response.data.books);
-        console.log("Books: ", response.data.books);
+        setBooksList(response.data.books);
       } catch (error) {
         console.log(error);
       }
@@ -25,7 +24,7 @@ function BookList() {
     getBooks();
   }, []);
 
-  const filteredBooks = booksArray.filter((book) => {
+  const filteredBooks = booksList.filter((book) => {
     if (searchInput === "") {
       return true;
     }
@@ -33,47 +32,47 @@ function BookList() {
     return title.startsWith(searchInput.toLowerCase());
   });
 
-  const handleSearch = (e) => {
-    setSearchInput(e.target.value);
+  const searchRes = (e) => {
+    setSearchRes(e.target.value);
   };
 
   return (
-    <div className="book-list-container">
-      <div className="header">
+    <div className="booklist-container">
+      <div className="header-section">
         <img
           className="logo-pic"
           src="https://kalvium.community/images/sidebar-3d-logo.svg"
-          alt=""
+          alt="Small-Logo"
         />
         <h2>Kalvium Books</h2>
-        <div className="search-bar-container">
+        <div className="searchbar-container">
           <i className="fas fa-search search-icon"></i>
 
           <input
             className="search-input"
             type="text"
             placeholder=" Search Books"
-            onChange={handleSearch}
+            onChange={searchRes}
           />
         </div>
 
         <NavLink to="/Forms">
-          <button className="register-button">Register</button>
+          <button className="register-btn">Register</button>
         </NavLink>
       </div>
 
-      <div className="book-list">
+      <div className="book-list-cont">
         {filteredBooks.length ? (
           filteredBooks.map((book) => (
-            <div key={book.id} className="book-card">
+            <div key={book.id} className="book-card-container">
               <div className="book-image">
                 <img
-                  className="book-thumbnail"
+                  className="book-thumbnail-pic"
                   src={book.imageLinks.thumbnail}
                   alt={book.title}
                 />
               </div>
-              <div className="book-details">
+              <div className="book-detail">
                 <p className="book-title">{book.title}</p>
                 <p className="book-authors">
                   {book.authors.map((author, index) => (
@@ -84,15 +83,15 @@ function BookList() {
                   ))}
                 </p>
 
-                <p className="book-rating">
-                  Rating: ★ {book.averageRating || "--"}/5
+                <p className="book-ratings">
+                  Rating: ★ {book.averageRating || "---"}/5
                 </p>
                 <p>Free</p>
               </div>
             </div>
           ))
         ) : (
-          <p>Please enter valid name</p>
+          <p>Loading....</p>
         )}
       </div>
     </div>

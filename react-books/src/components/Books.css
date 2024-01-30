@@ -6,7 +6,7 @@
   box-sizing: border-box;
 }
 
-.header {
+.header-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -29,9 +29,8 @@ h2 {
   top: 50px;
 }
 
-.search-bar-container {
+.searchbar-container {
   display: flex;
-
   width: 40%;
   position: absolute;
   left: 72vh;
@@ -49,7 +48,7 @@ h2 {
   height: 100%;
 }
 
-.register-button {
+.register-btn {
   background-color: #b7afaf;
   padding: 10px;
   background: rgb(124, 107, 151);
@@ -63,7 +62,7 @@ h2 {
   color: #ffffff;
 }
 
-.book-list {
+.book-list-cont {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 50px;
@@ -72,7 +71,7 @@ h2 {
   justify-content: center;
 }
 
-.book-card {
+.book-card-container {
   border: 3px solid black;
   padding: 10px;
   box-shadow: 5px 5px rgb(31, 30, 30);
@@ -80,11 +79,11 @@ h2 {
   background-color: #fdf0da;
 }
 
-.book-thumbnail {
+.book-thumbnail-pic {
   height: 30vh;
 }
 
-.book-details {
+.book-detail {
   margin-top: 10px;
 }
 
@@ -98,7 +97,7 @@ h2 {
   margin-top: 10px;
 }
 
-.book-rating {
+.book-ratings {
   font-size: 16px;
   margin-top: 10px;
 }
@@ -112,7 +111,7 @@ h2 {
     margin-bottom: 20px;
   }
 
-  .search-bar-container {
+  .searchbar-container {
     width: 50%;
     left: auto;
     top: 12vh;
